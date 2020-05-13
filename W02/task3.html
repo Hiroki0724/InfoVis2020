@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>W02: Task3</title>
+</head>
+<body>
+<script src="vec3.js"></script>
+<p>点P0のx座標</p>
+<input id="input0x" type="" size="30" value="">
+<p>点P0のy座標</p>
+<input id="input0y" type="" size="30" value="">
+<p>点P0のz座標</p>
+<input id="input0z" type="" size="30" value="">
+<p>点P1のx座標</p>
+<input id="input1x" type="" size="30" value="">
+<p>点P1のy座標</p>
+<input id="input1y" type="" size="30" value="">
+<p>点P1のz座標</p>
+<input id="input1z" type="" size="30" value="">
+<p>点P2のx座標</p>
+<input id="input2x" type="" size="30" value="">
+<p>点P2のy座標</p>
+<input id="input2y" type="" size="30" value="">
+<p>点P2のz座標</p>
+<input id="input2z" type="" size="30" value="">
+<input type="button" value="Check" onclick="myfunc()">
+
+<p>ボタンをクリック！</p>
+ 
+  <div id="edit_area1"></div>
+ 
+ 
+  <script>
+ 
+    var myfunc = function () {
+        var x0=document.getElementById('input0x').value;
+        var y0=document.getElementById('input0y').value;
+        var z0=document.getElementById('input0z').value;
+        var x1=document.getElementById('input1x').value;
+        var y1=document.getElementById('input1y').value;
+        var z1=document.getElementById('input1z').value;
+        var x2=document.getElementById('input2x').value;
+        var y2=document.getElementById('input2y').value;
+        var z2=document.getElementById('input2z').value;
+        var v0 = new Vec3( x0, y0, z0 );
+        var v1 = new Vec3( x1, y1, z1 );
+        var v2 = new Vec3( x2, y2, z2 );
+        var area=v0.AreaOfTriangle( v1, v2 );
+        var str = ".innerHTMLで変数渡し！";
+        document.getElementById('edit_area1').innerHTML =  area;
+    }
+ 
+  </script>
+
+</body>
+</html>

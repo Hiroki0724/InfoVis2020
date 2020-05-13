@@ -1,13 +1,22 @@
 <html>
-<head>
-<title>W02: Example 04</title>
-<meta charset="utf-8">
-</head>
-<body>
-<p id=“target”></p>
-<script>
-document.getElementById("target").innerHTML = "Hello World!";
-
-</script>
-</body>
+ 
+  <body>
+ 
+  <p>ボタンをクリック！</p>
+ 
+  <div id="edit_area"></div>
+ 
+  <input type="button" value="Check" onclick="myfunc()">
+ 
+  <script>
+ 
+    var myfunc = function () {
+        var str = ".innerHTMLで変数渡し！";
+      document.getElementById('edit_area').innerHTML = str ;
+    }
+ 
+  </script>
+ 
+  </body>
+ 
 </html>
