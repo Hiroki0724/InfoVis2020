@@ -125,6 +125,38 @@ function main()
     var triangle = new THREE.Mesh( geometry, material );
     scene.add( triangle );
 
+       //a mouse down event
+    document.addEventListener( 'mousedown', mouse_down_event );
+    function mouse_down_event( event )
+    {
+        // Mouse picking
+         var x_win = event.clientX;
+        var y_win = event.clientY;
+
+         var vx = renderer.domElement.offsetLeft;
+         var vy = renderer.domElement.offsetTop;
+         var vw = renderer.domElement.width;
+         var vh = renderer.domElement.height;
+          var x_NDC = 2 * ( x_win - vx ) / vw - 1;
+         var y_NDC = -( 2 * ( y_win - vy ) / vh - 1 );
+
+         //NDC to world coordinates
+          var p_NDC = new THREE.Vector3( x_NDC, y_NDC, 1 );
+          var p_wld = p_NDC.unproject( camera );
+
+         var origin = camera.position;
+         var direction = p_wld.sub(camera.position).normalize();
+
+         //THREE.Raycaster
+          var raycaster = new THREE.Raycaster( origin, direction );
+          var intersects = raycaster.intersectObject( triangle );
+          if ( intersects.length > 0 )
+          {
+            intersects[0].face.color.setRGB( 0, 1, 0 );
+            intersects[0].object.geometry.colorsNeedUpdate = true;
+          }
+    }
+
     loop();
 
     function loop()
@@ -133,20 +165,6 @@ function main()
         triangle.rotation.x += 0.001;
         triangle.rotation.y += 0.001;
         renderer.render( scene, camera );
-    }
-
-    document.addEventListener( 'mousedown', mouse_down_event );
-    function mouse_down_event( event )
-    {
-        // Mouse picking
-        // ...
-        var raycaster = new THREE.Raycaster( origin, direction );
-        var intersects = raycaster.intersectObject( triangle );
-        if ( intersects.length > 0 )
-        {
-            intersects[0].face.color.setRGB( 1, 1, 0 );
-            intersects[0].object.geometry.colorsNeedUpdate = true;
-        }
     }
 
 }
