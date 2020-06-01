@@ -39,24 +39,23 @@
             return C * ( Ia + Id + Is );
         }
 
-        void main()
-        {
-        point_position = modelViewMatrix * vec4( position, 1.0 );
-        normal_vector = normalMatrix * normal;
-        vec3 C = color;
-        vec3 L = normalize( light_position - point_position.xyz );
-        vec3 N = normalize( normal_vector );
-        point_color = PhongReflection( C, L, N );
-        gl_Position = projectionMatrix * point_position;
+        void main(){
+            point_color = color;
+            point_position = modelViewMatrix * vec4( position, 1.0 );
+            normal_vector = normalMatrix * normal;
+            gl_Position = projectionMatrix * point_position;
         }
     </script>
 
 
     <script type="x-shader/x-fragment" id="gouraud.frag">
             varying vec3 point_color;
-            void main()
-            {
-            gl_FragColor = vec4( point_color, 1.0 );
+            void main(){
+                vec3 C = point_color;
+                vec3 L = normalize( light_position - point_position.xyz );
+                vec3 N = normalize( normal_vector );
+                vec3 shaded_color = PhongReflection( C, L, N );
+                gl_FragColor = vec4( shaded_color, 1.0 );
             }
     </script>
 	<script src="task2.js"></script>
