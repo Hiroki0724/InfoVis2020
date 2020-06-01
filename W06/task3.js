@@ -35,9 +35,9 @@ function main()
 
     var scalars = [
         1,   // S0
-        32, // S1
+        40, // S1
         255,  // S2
-        182
+        160
     ];
 
     // Create color map
