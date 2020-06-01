@@ -33,7 +33,7 @@ function main()
 
     var scalars = [
         1,   // S0
-        64, // S1
+        32, // S1
         255  // S2
     ];
 
