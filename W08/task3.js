@@ -7,7 +7,7 @@ function main()
         width: window.innerWidth,
         height: window.innerHeight,
         enableAutoResize: false
-    });
+    })
 
     var bounds = Bounds( volume );
     screen.scene.add( bounds );
